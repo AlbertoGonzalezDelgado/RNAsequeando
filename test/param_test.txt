@@ -1,0 +1,4 @@
+working_directory: /home/bag2021_3/
+folder_name: pipe_example
+genome: /home/bag2021_3/rna_seq/genome/chr5.fa.gz
+annotation: /home/bag2021_3/rna_seq/annotation/chr5.gtf.gz
