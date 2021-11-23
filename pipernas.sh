@@ -19,6 +19,7 @@ FD=$(grep "folder_name:" $PFILE | awk '{ print $2 }')
 GD=$(grep "genome:" $PFILE | awk '{ print $2 }')
 AN=$(grep "annotation:" $PFILE | awk '{ print $2 }')
 NUMSAM=$(grep "number_samples:" $PFILE | awk '{ print $2 }')
+PIPER=$(grep "piper:" $PFILE | awk '{ print $2 }')
 SAMPLES=()
 i=0
 while [ $i -lt $NUMSAM ]
@@ -84,7 +85,7 @@ i=0
 while [ $i -lt $NUMSAM ]
 do
 	j=$(($i + 1))
-	sbatch $PIPER/sample_processing.sh $WD/$FD/samples/sample_${j} $j $NUMSAM
+	sbatch $PIPER/sample_processing.sh $WD/$FD/samples/sample_${j} $j $NUMSAM $PIPER
 	((i++))
   echo "."
 done

@@ -8,6 +8,7 @@
 SAMPLEDIR=$1
 i=$2
 NUMSAM=$3
+PIPER=$4
 
 ## Accessing sample folder
 cd $SAMPLEDIR
@@ -39,9 +40,11 @@ stringtie -e -B -G ../../annotation/annotation.gtf -o sample_${i}.gtf sample_${i
 echo "Finished processing sample_${i}" >> ../../results/blackboard
 
 ## Check if it is the last sample by reading the blackboard
-if [ ${wc -l ../../results/blackboard | awk '{ print $1 }'} -eq $NUMSAM ]
+cd ../../logs
+BB=$(wc -l ../results/blackboard | awk '{ print $1 }')
+if [ $BB -eq $NUMSAM ]
 then
-  sbatch $PIPER/transcriptome_merging.sh
+  sbatch $PIPER/transcriptome_merging.sh $FD
   echo "All samples have been processed"
 fi
 

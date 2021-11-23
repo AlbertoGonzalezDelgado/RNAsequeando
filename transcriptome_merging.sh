@@ -6,14 +6,14 @@
 ## Email: fran@us.es
 
 ## Accessing results folder
-PFILE=$1
-echo "Loading the parameters file"
-WD=$(grep "working_directory:" $PFILE | awk '{ print $2 }')
-FD=$(grep "folder_name:" $PFILE | awk '{ print $2 }')
-cd $WD/$FD/results
+FD=$1
+cd ../results
 
 ## Merging sample transcriptomes
 stringtie --merge -G ../annotation/annotation.gtf -o stringtie_merged.gtf merge_list.txt
 
 ## Comparing our assembly with the reference
 gffcompare -r ../annotation/annotation.gtf -G -o comparison stringtie_merged.gtf
+
+## Showing the analysis is finished
+echo "Analysis finished. CONGRATULATIONS!" >> ./finishing.txt
